@@ -1,5 +1,6 @@
 window.onload= function(){ 
  var puzzle_area=$('#puzzlearea');
+ var shuffle_button=document.getElementById("shufflebutton");
  var c= puzzle_area.children(); 
  var x = 0; // horizantal position
  var y = 0; // vertical position
@@ -39,6 +40,11 @@ window.onload= function(){
 	   //else if(tile_y == move_up ||tile_y == move_down ) {
 		  //move(tile); 
 	   //}
+  } 
+  function suffler(N){ 
+      pos= Math.floor(Math.random() * N);
+	  console.log(pos);
+	  is_movable(pos);
   }
  
  
@@ -73,7 +79,12 @@ window.onload= function(){
 		  y=y-100;
 	  }
    } 
-    
+    shuffle_button.onclick=function(){
+    for(var l=0; l<c.length;l++){ 
+	 console.log("in loop");
+		suffler(15);
+		} 
+	}
 	/*for(let f=0; f<c.length;f++){
 	 let c_change=c[f] ;
        c_change.onmouseover=function(){
@@ -81,7 +92,10 @@ window.onload= function(){
 				item.classList.add("movablepiece");
 				});
 	  } 
-	}*/
+	}*/ 
+	//c[0].onmouseover=function (){
+		//c[0].classList.add("movablepiece");
+	//}
 	c[0].onclick=function(){
 			is_movable(0);
 		} 
