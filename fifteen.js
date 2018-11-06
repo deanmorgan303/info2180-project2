@@ -1,4 +1,5 @@
-window.onload= function(){ 
+window.onload= function(){  
+// the extra feature is to keep track of game time and the number of moves that where made 
  var puzzle_area=$('#puzzlearea');
  var shuffle_button=document.getElementById("shufflebutton");
  var c= puzzle_area.children(); 
@@ -12,7 +13,8 @@ window.onload= function(){
  var blanky=300;
  var tile_pos;
  var tile_x;
- var tile_y;
+ var tile_y; 
+ var moves = 0;
  console.log(c);
  
  function move(piece){ 
@@ -80,10 +82,12 @@ window.onload= function(){
 	  }
    } 
     shuffle_button.onclick=function(){
-    for(var l=0; l<c.length;l++){ 
+    for(var l=0; l<500;l++){ 
 	 console.log("in loop");
 		suffler(15);
-		} 
+		}  
+		var date= new Date();
+		var timer=date.getSeconds();
 	}
 	/*for(let f=0; f<c.length;f++){
 	 let c_change=c[f] ;
@@ -93,53 +97,70 @@ window.onload= function(){
 				});
 	  } 
 	}*/ 
-	//c[0].onmouseover=function (){
-		//c[0].classList.add("movablepiece");
-	//}
+	for(let f=0; f<c.length; f++){ // add the highlight function to each tile 
+	c[f].onmouseover=function (){
+		c[f].classList.add("movablepiece"); 
+		console.log(moves);
+	} 
+	}
 	c[0].onclick=function(){
 			is_movable(0);
+			moves=moves + 1 ;
 		} 
 	c[1].onclick=function(){
-			is_movable(1);
+			is_movable(1); 
+			moves=moves + 1 ;
 		} 
 	c[2].onclick=function(){
-			is_movable(2);
+			is_movable(2); 
+			moves=moves + 1 ;
 		} 
      c[3].onclick=function(){
-			is_movable(3);
+			is_movable(3); 
+			moves=moves + 1 ;
 		} 
     c[4].onclick=function(){
-			is_movable(4);
+			is_movable(4); 
+			moves=moves + 1 ;
 		} 
      c[5].onclick=function(){
-			is_movable(5);
+			is_movable(5); 
+			moves=moves + 1 ;
 		} 
      c[6].onclick=function(){
-			is_movable(6);
+			is_movable(6); 
+			moves=moves + 1 ;
 		}  
     c[7].onclick=function(){
-			is_movable(7);
+			is_movable(7); 
+			moves=moves + 1 ;
 		}
     c[8].onclick=function(){
 			is_movable(8);
 		} 
     c[9].onclick=function(){
-			is_movable(9);
+			is_movable(9); 
+			moves=moves + 1 ;
 		} 
     c[10].onclick=function(){
-			is_movable(10);
+			is_movable(10); 
+			moves=moves + 1 ;
 		} 
     c[11].onclick=function(){
-			is_movable(11);
+			is_movable(11); 
+			moves=moves + 1 ;
 		} 	
     c[12].onclick=function(){
-			is_movable(12);
+			is_movable(12); 
+			moves=moves + 1 ;
 		}
     c[13].onclick=function(){
-			is_movable(13);
+			is_movable(13); 
+			moves=moves + 1 ;
 		}  		
 	c[14].onclick=function(){
-			is_movable(14);
+			is_movable(14); 
+			moves=moves + 1 ;
 		} 
    }
    
