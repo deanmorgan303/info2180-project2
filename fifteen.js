@@ -1,5 +1,5 @@
 window.onload= function(){  
-// the extra feature is to keep track of game time and the number of moves that where made 
+// the extra feature is to change the backgrounnd image of the puzzle  
  var puzzle_area=$('#puzzlearea');
  var shuffle_button=document.getElementById("shufflebutton");// gets the is id of the shuffle button 
  var c= puzzle_area.children(); 
