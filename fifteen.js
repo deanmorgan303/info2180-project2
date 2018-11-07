@@ -1,7 +1,7 @@
 window.onload= function(){  
 // the extra feature is to keep track of game time and the number of moves that where made 
  var puzzle_area=$('#puzzlearea');
- var shuffle_button=document.getElementById("shufflebutton");
+ var shuffle_button=document.getElementById("shufflebutton");// gets the is id of the shuffle button 
  var c= puzzle_area.children(); 
  var x = 0; // horizantal position
  var y = 0; // vertical position
@@ -9,26 +9,29 @@ window.onload= function(){
  var xaxis ;
  var yaxis ; 
  var value ; 
- var blankx=300;
- var blanky=300;
- var tile_pos;
+ var blankx=300;// keep track of the x position of the blank tile
+ var blanky=300;// keep track of the y position of the blank tile
  var tile_x;
  var tile_y; 
- var moves = 0;
+ var moves = 0;// this keep count of the amount of moves made  
+ 
  console.log(c);
  
- function move(piece){ 
+ function move(piece){  
+ // this function moves a tile into the blank space 
       x=blankx;
 	  y=blanky ;
 	  o=c[piece];
-	  new_pos=$(c[piece]).position();
+	  new_pos=$(c[piece]).position();// gets the position of the tile 
 	  console.log(new_pos);
 	  c[piece].style.left= x+"px";
 	  c[piece].style.top= y+"px"; 
 	  blankx=new_pos["left"];
-	  blanky=new_pos["top"]; 
+	  blanky=new_pos["top"];  
+
  }   
-  function is_movable(tile){
+  function is_movable(tile){ 
+  //this function test if a tile is movable and if it is it will moves it 
 	    tile_pos=$(c[tile]).position();
 		tile_x=tile_pos["left"];
 		tile_y=tile_pos["top"];
@@ -43,12 +46,90 @@ window.onload= function(){
 		  //move(tile); 
 	   //}
   } 
-  function suffler(N){ 
+  function suffler(N){ //gets a random tile then if movable it switches it with the black tile 
       pos= Math.floor(Math.random() * N);
 	  console.log(pos);
 	  is_movable(pos);
+  } 
+  function image_changer(){ 
+   x = Math.floor(Math.random()*3); 
+   for(var j=0; j<c.length; j++){
+      if (x==0){ 
+	  var t=0;
+	  var h=0;
+	   count=0;
+	   for (var i = 0; i<c.length; i++){ 
+        
+      $(c[i]).first().addClass("puzzlepiece");
+	  c[i].style.backgroundImage="url('background3.jpg')";
+	  c[i].style.backgroundSize="400px 400px";
+      c[i].style.left = h + "px";
+      c[i].style.top = t + "px";
+       //console.log(x + " " + y);
+      h+=100;
+      count+= 1;
+  if (count%4 == 0){
+    t += 100;
+    h=0; 
+  } 
   }
- 
+	  } 
+      else if (x==1){
+	  var t=0;
+	  var h=0;
+	  count=0;
+	   for (var i = 0; i<c.length; i++){ 
+        
+      $(c[i]).first().addClass("puzzlepiece");
+	  c[i].style.backgroundImage="url('background4.jpg')";
+	  c[i].style.backgroundSize="400px 400px";
+      c[i].style.left = h + "px";
+      c[i].style.top = t + "px";
+       //console.log(x + " " + y);
+      h+=100;
+      count+= 1;
+  if (count%4 == 0){
+    t += 100;
+    h=0; 
+  } 
+  }
+	  } 
+	else if (x==2){
+		var t=0;
+	  var h=0;
+	  count=0;
+	   for (var i = 0; i<c.length; i++){ 
+        
+      $(c[i]).first().addClass("puzzlepiece");
+	  c[i].style.backgroundImage="url('background5.jpg')";
+	  c[i].style.backgroundSize="400px 400px";
+      c[i].style.left = h + "px";
+      c[i].style.top = t + "px";
+       //console.log(x + " " + y);
+      h+=100;
+      count+= 1;
+  if (count%4 == 0){
+    t += 100;
+    h=0; 
+  } 
+  }
+	}
+	  
+
+   }
+		
+  }
+  
+ function changeButton(){// this set up the botoon that allows the image to be changed 
+	var $input = $('<input type="button" value="Change Image" />');
+	$input.click(function(){
+		image_changer();
+	});
+	
+	$input.appendTo($("#controls"));
+	
+}
+ changeButton();
  
  for (var i = 0; i<c.length; i++){
  
@@ -82,6 +163,7 @@ window.onload= function(){
 	  }
    } 
     shuffle_button.onclick=function(){
+	// this function is used to shuffle the tiles on the beord 
     for(var l=0; l<500;l++){ 
 	 console.log("in loop");
 		suffler(15);
@@ -89,20 +171,15 @@ window.onload= function(){
 		var date= new Date();
 		var timer=date.getSeconds();
 	}
-	/*for(let f=0; f<c.length;f++){
-	 let c_change=c[f] ;
-       c_change.onmouseover=function(){
-		 c.forEach(function( item){
-				item.classList.add("movablepiece");
-				});
-	  } 
-	}*/ 
+	
 	for(let f=0; f<c.length; f++){ // add the highlight function to each tile 
-	c[f].onmouseover=function (){
+	c[f].onmouseover=function (){ 
+	   
 		c[f].classList.add("movablepiece"); 
 		console.log(moves);
 	} 
-	}
+	} 
+	// this makes the tiles move when clicke if they are next to the blank tile 
 	c[0].onclick=function(){
 			is_movable(0);
 			moves=moves + 1 ;
